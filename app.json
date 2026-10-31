@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Bachat",
+    "slug": "bachat",
+    "version": "1.0.0",
+    "orientation": "default",
+    "scheme": "bachat",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#000000",
+    "android": {
+      "package": "com.bachat.coach",
+      "permissions": [
+        "android.permission.READ_SMS"
+      ],
+      "predictiveBackGestureEnabled": false,
+      "allowBackup": false,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#D4AF37"
+      }
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bachat.coach"
+    },
+    "web": {
+      "output": "single",
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Bachat uses the microphone only while you hold the Speak button, to hear what you want to do."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Bachat uses Face ID only to unlock the app when App lock is on."
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#000000"
+        }
+      ]
+    ],
+    "icon": "./assets/icon.png"
+  }
+}

@@ -1,0 +1,50 @@
+# Publishes the web version (works on any laptop or desktop browser) to GitHub Pages.
+# One-time setup: Settings → Pages → Source: "GitHub Actions".
+name: Web app (GitHub Pages)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # The web build is public: use the AI proxy here, never a Gemini key.
+      EXPO_PUBLIC_AI_PROXY_URL: ${{ secrets.EXPO_PUBLIC_AI_PROXY_URL }}
+      EXPO_PUBLIC_AI_APP_TOKEN: ${{ secrets.EXPO_PUBLIC_AI_APP_TOKEN }}
+      EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.EXPO_PUBLIC_SUPABASE_URL }}
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.EXPO_PUBLIC_SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - name: Serve from /<repo-name>/
+        run: |
+          node -e "const f='app.json',j=require('./'+f);j.expo.experiments={...(j.expo.experiments||{}),baseUrl:'/${{ github.event.repository.name }}'};require('fs').writeFileSync(f,JSON.stringify(j,null,2))"
+      - run: npx expo export --platform web
+      - run: cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

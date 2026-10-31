@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="diagram.css">
+<style>
+  #shot { width: 1400px; }
+  .grid { display: grid; grid-template-columns: 1fr 380px; gap: 22px 40px; align-items: stretch; }
+  .main { display: flex; flex-direction: column; }
+  .side { display: flex; flex-direction: column; gap: 22px; }
+  .layer { min-height: 92px; }
+  .mid { position: relative; }
+  .link { text-align: center; font-weight: 700; font-size: 13px; margin: -10px 0; }
+  .legend { margin-top: 26px; display: flex; gap: 26px; font-size: 13px; align-items: center; }
+  .sw { display: inline-block; width: 26px; height: 16px; border: 2px solid #000; border-radius: 4px; vertical-align: middle; margin-right: 6px; }
+</style></head>
+<body><div id="shot">
+  <h1>Bachat system architecture</h1>
+  <p class="lead">Every number is computed on the phone. AI agents reason and use on-device tools; they never do the maths.</p>
+  <div class="grid">
+    <div class="main">
+      <div class="box layer"><div class="layer-label">1 · Inputs</div>
+        <div class="chips"><span class="chip">Bank SMS</span><span class="chip">CSV export</span><span class="chip">PDF statements</span><span class="chip">Voice</span><span class="chip">Family invite code</span></div></div>
+      <div class="down">↓</div>
+      <div class="box layer"><div class="layer-label">2 · On-device pipeline</div>
+        <div class="chips"><span class="chip">SMS parser</span><span class="chip">CSV parser</span><span class="chip">PDF text layer</span><span class="chip">Statement table parser</span><span class="chip">OCR fallback</span><span class="chip">Merchant cleaning</span><span class="chip">Redaction</span></div></div>
+      <div class="down">↓</div>
+      <div class="box layer"><div class="layer-label">3 · Money model (living profile)</div>
+        <div class="chips"><span class="chip">Transactions</span><span class="chip">Rules</span><span class="chip">Recurring</span><span class="chip">Profile versions</span><span class="chip">Goals</span><span class="chip">Emergency fund</span><span class="chip">Budgets</span><span class="chip">Family snapshot</span></div></div>
+      <div class="down">↓</div>
+      <div class="box layer"><div class="layer-label">4 · Deterministic engines (on device)</div>
+        <div class="chips"><span class="chip">Categorise: rules → merchants → keywords</span><span class="chip">Recurring detection</span><span class="chip">What-if / scenarios</span><span class="chip">Savings detectors</span><span class="chip">Budget pace</span><span class="chip">Nudges</span><span class="chip">Monthly report</span><span class="chip">Output guard</span></div></div>
+      <div class="down">↓</div>
+      <div class="box layer"><div class="layer-label">5 · App (Android · iOS · web)</div>
+        <div class="chips"><span class="chip">Home</span><span class="chip">Review</span><span class="chip">Budgets</span><span class="chip">Transactions</span><span class="chip">Recurring</span><span class="chip">Emergency fund</span><span class="chip">Goals</span><span class="chip">Family</span><span class="chip">Assistant</span></div></div>
+    </div>
+    <div class="side">
+      <div class="box dashed"><div class="t">Family sync (Supabase)</div><div class="d">Invite code joins a household. Monthly snapshots, end-to-end encrypted. Server stores ciphertext only.</div></div>
+      <div class="box"><div class="t">Encrypted store</div><div class="d">All data sealed on the phone with a key in the secure keystore. Optional app lock.</div></div>
+      <div class="box ai ai-fill"><span class="tag">AI AGENTS</span><div class="t" style="font-size:18px">10 agents · Gemini</div><div class="d">Autopilot orchestrates the Categoriser, Statement reader, Voice, Savings coach, Goal planner, Re-planner, Off-plan explainer and Review recap. The Assistant calls on-device tools. Guardrail first, output guard last, you confirm every change.</div></div>
+      <div class="link">↕ masked data only</div>
+      <div class="box dashed"><div class="t">AI proxy (Cloudflare Worker)</div><div class="d">Holds the Gemini key · model allowlist · app token · rate limit · no logging.</div></div>
+    </div>
+  </div>
+  <div class="legend"><span><span class="sw"></span>On device</span><span><span class="sw" style="background:#000"></span>AI agents</span><span><span class="sw" style="border-style:dashed"></span>Cloud (free tier)</span></div>
+</div></body></html>

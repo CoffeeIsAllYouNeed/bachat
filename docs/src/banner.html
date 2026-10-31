@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bachat banner</title>
+<style>
+  @font-face { font-family: "Kalam"; font-weight: 700; src: url("fonts/kalam-devanagari-700-normal.woff2") format("woff2"); unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF; }
+  @font-face { font-family: "Kalam"; font-weight: 700; src: url("fonts/kalam-latin-700-normal.woff2") format("woff2"); }
+  html, body { margin: 0; padding: 0; background: #000000; }
+  .banner {
+    width: 1280px; height: 400px; background: #000000; color: #ffffff;
+    display: flex; align-items: center; justify-content: center; gap: 56px;
+    font-family: Arial, "Liberation Sans", sans-serif;
+  }
+  .tile {
+    width: 200px; height: 200px; border-radius: 56px; background: #D4AF37;
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .tile span {
+    font-family: "Kalam"; font-weight: 700; font-size: 124px; color: #000000;
+    line-height: 200px; margin-top: 14px;
+  }
+  .name { font-size: 104px; font-weight: 700; letter-spacing: -2px; line-height: 1; }
+  .tag { margin-top: 22px; font-size: 30px; color: #D4AF37; line-height: 1.25; }
+  .sub { margin-top: 10px; font-size: 22px; color: #bdbdbd; }
+</style>
+</head>
+<body>
+  <div class="banner" id="shot">
+    <div class="tile"><span>ब</span></div>
+    <div>
+      <div class="name">Bachat</div>
+      <div class="tag">Your personal finance coach, on your phone.</div>
+    </div>
+  </div>
+</body>
+</html>
