@@ -11,6 +11,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-D4AF37.svg)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
+### [📲 Download the Android app (APK)](https://drive.google.com/file/d/1a9uc-C8i5a4FA89IPfm3UW2ochXryBOY/view?usp=sharing)
+
 [Features](#features) · [Screenshots](#screenshots) · [Architecture](#architecture) · [AI agents](#how-the-ai-agents-work) · [Privacy](#privacy--security) · [Download](#download) · [Quick start](#quick-start) · [Roadmap](#roadmap)
 
 </div>
@@ -131,7 +133,7 @@ Threat model and how to report a vulnerability: [SECURITY.md](SECURITY.md).
 
 | Device | How to get Bachat |
 |---|---|
-| **Android phone** | Download `Bachat-v*.apk` from this repository's **Releases** page, open it, and allow *Install unknown apps* when asked. |
+| **Android phone** | [Download the APK](https://drive.google.com/file/d/1a9uc-C8i5a4FA89IPfm3UW2ochXryBOY/view?usp=sharing) (or from this repository's **Releases** page), open it, and allow *Install unknown apps* when asked. |
 | **Laptop / desktop** | Open the web app from this repository's **GitHub Pages** link (top right, under *About*). Works in any modern browser. |
 | **Developers** | Clone the repo and follow [Quick start](#quick-start) to run it in Expo Go. |
 
